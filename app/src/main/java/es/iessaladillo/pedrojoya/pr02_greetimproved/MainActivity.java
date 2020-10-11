@@ -1,9 +1,11 @@
 package es.iessaladillo.pedrojoya.pr02_greetimproved;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setupViews();
     }
 
-    //SetUp premium swift botton
     private void setupViewsPremium() {
         if(binding.swtPremium.isChecked()){
             binding.progressBar.setVisibility(View.GONE);
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Setup on views
     private void setupViews() {
         showTimes();
         changeChar();
@@ -51,13 +51,37 @@ public class MainActivity extends AppCompatActivity {
         binding.txtSurname.setOnFocusChangeListener((view, b) -> {
             changeCharViewColorOnFocus(binding.lblCharSurName, b);
         });
-        binding.txtName.setOnKeyListener((view, i, keyEvent) -> {
-            changeChar();
-            return false;
+        binding.txtName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                changeChar();
+            }
         });
-        binding.txtSurname.setOnKeyListener((view, i, keyEvent) -> {
-            changeChar();
-            return false;
+        binding.txtSurname.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                changeChar();
+            }
         });
         binding.txtSurname.setOnEditorActionListener((textView, i, keyEvent) -> {
             incrementAndShow();
@@ -65,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //Change colors on focus text
     private void changeCharViewColorOnFocus(TextView textView, boolean b) {
         if (b) {
             textView.setTextColor(getResources().getColor(R.color.colorAccent));
@@ -74,11 +97,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Modify text of chars
     private void changeChar() {
         int countCharName = 20;
-        binding.lblCharName.setText(getResources().getQuantityString(R.plurals.main_char, countCharName -binding.txtName.getText().length(), countCharName -binding.txtName.getText().length()));
-        binding.lblCharSurName.setText(getResources().getQuantityString(R.plurals.main_char, countCharName -binding.txtSurname.getText().length(), countCharName -binding.txtSurname.getText().length()));
+
+        binding.lblCharName.setText(getResources().getQuantityString(R.plurals.main_char, countCharName - binding.txtName.getText().length(), countCharName - binding.txtName.getText().length()));
+        binding.lblCharSurName.setText(getResources().getQuantityString(R.plurals.main_char, countCharName - binding.txtSurname.getText().length(), countCharName - binding.txtSurname.getText().length()));
+
     }
 
     //Change the icon of treatment
@@ -95,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Check the count and see if is premium or the max time to use the buttom
     private void incrementAndShow() {
         SoftInputUtils.hideSoftKeyboard(binding.lblCharName);
         if(times < 10 && !binding.swtPremium.isChecked() && validateTxt()){
@@ -110,34 +133,46 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Check text and cant be empty and need to write a valid name (minimum 2 char and cant be numbers)
     private boolean validateTxt() {
         if(binding.txtName.getText().length() == 0 || binding.txtSurname.getText().length() == 0 || !binding.txtName.getText().toString().matches("[a-zA-Z][a-zA-Z ]+") || !binding.txtSurname.getText().toString().matches("[a-zA-Z][a-zA-Z ]+")){
+            showAlert();
             return false;
         } else {
             return true;
         }
     }
 
-    //Send message Buy Premium
     private void buyPremium() {
-        binding.lblGreet.setText(String.valueOf("Buy premium subscription to go on greeting!!"));
+        showMessage("Buy premium subscription to go on greeting!!");
     }
 
-    //Show times and bar progress
     private void showTimes() {
         binding.lblCount.setText(String.valueOf(times+" of 10"));
         binding.progressBar.setProgress(times);
     }
 
-    //Check if is polite or not.
     private void showGreet() {
         if(binding.chkPolitely.isChecked()){
-            binding.lblGreet.setText(String.valueOf("Good morning "+treatmentSelected+" "+binding.txtName.getText()+" "+binding.txtSurname.getText()+".\nPleased to meet you"));
+            showMessage("Good morning "+treatmentSelected+" "+binding.txtName.getText()+" "+binding.txtSurname.getText()+".\nPleased to meet you");
         } else {
-            binding.lblGreet.setText(String.valueOf("Hello "+binding.txtName.getText()+" "+binding.txtSurname.getText()+ ". What's up?"));
+            showMessage("Hello "+binding.txtName.getText()+" "+binding.txtSurname.getText()+ ". What's up?");
+
         }
 
     }
+
+    private void showMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showAlert() {
+        if(binding.txtName.getText().length()==0 || !binding.txtName.getText().toString().matches("[a-zA-Z][a-zA-Z ]+")){
+            binding.txtName.setError(getString(R.string.RequiredLetter));
+        } else if (binding.txtSurname.getText().length()==0 || !binding.txtSurname.getText().toString().matches("[a-zA-Z][a-zA-Z ]+")){
+            binding.txtSurname.setError(getString(R.string.RequiredLetter));
+        }
+    }
+
+
 
 }

@@ -13,6 +13,8 @@
     <string name="main_btnGreet">Greet</string>
 
     <string name="main_greet" />
+    <string name="Required">Required!!</string>
+    <string name="RequiredLetter">Required 2 letters minimun</string>
 
     <plurals name="main_char">
         <item quantity="one">%1$d char</item>
