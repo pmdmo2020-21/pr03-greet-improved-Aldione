@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Greet Improved</string>
+    <string name="txtPremium">Premium</string>
+    <string name="blnPremium">false</string>
+    <string name="txtName">Name</string>
+    <string name="txtSurname">Surname</string>
+    <string name="txtTreatment">Treatment</string>
+    <string name="txtTreatmentMr">Mr.</string>
+    <string name="txtTreatmentMrs">Mrs.</string>
+    <string name="txtTreatmentMs">Ms.</string>
+    <string name="txtTreatmenPhoto">Photo</string>
+    <string name="main_chkPolitely">Politely</string>
+    <string name="main_btnGreet">Greet</string>
+
+    <string name="main_greet" />
+
+    <plurals name="main_char">
+        <item quantity="one">%1$d char</item>
+        <item quantity="other">%1$d chars</item>
+    </plurals>
+
 </resources>

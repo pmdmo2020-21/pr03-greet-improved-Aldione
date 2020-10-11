@@ -3,8 +3,143 @@
     android:id="@+id/llRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/main_padding"
     android:orientation="vertical">
 
-    <!-- TODO -->
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swtPremium"
+        android:layout_gravity="end"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/txtPremium"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:checked="false" />
+
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:text="@string/txtName" />
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:inputType="textPersonName"
+        android:maxLength="20" />
+
+    <TextView
+        android:id="@+id/lblCharName"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:id="@+id/lblSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:text="@string/txtSurname" />
+
+    <EditText
+        android:id="@+id/txtSurname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:inputType="textPersonName"
+        android:maxLength="20"
+        android:imeOptions="actionDone"/>
+
+    <TextView
+        android:id="@+id/lblCharSurName"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:id="@+id/lblTreatment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:text="@string/txtTreatment" />
+
+    <RadioGroup
+        android:id="@+id/treatmentSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/main_padding"
+        android:checkedButton="@+id/treatmentMr"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mr"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/txtTreatmenPhoto"/>
+        <RadioButton
+            android:id="@+id/treatmentMr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/radio_padding"
+            android:text="@string/txtTreatmentMr" />
+        <RadioButton
+            android:id="@+id/treatmentMrs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/radio_padding"
+            android:text="@string/txtTreatmentMrs" />
+        <RadioButton
+            android:id="@+id/treatmentMs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/radio_padding"
+            android:text="@string/txtTreatmentMs" />
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/chkPolitely"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_padding"
+        android:text="@string/main_chkPolitely"
+        android:checked="false" />
+
+    <Button
+        android:id="@+id/btnGreet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_padding"
+        android:layout_gravity="center"
+        android:text="@string/main_btnGreet"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:indeterminate="false"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="@dimen/main_padding"
+        android:max="10"
+        android:progress="0"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+    <TextView
+        android:id="@+id/lblCount"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:id="@+id/lblGreet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/main_padding"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:text="@string/main_greet" />
 
 </LinearLayout>
